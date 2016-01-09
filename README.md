@@ -1,0 +1,1 @@
+# react-intl-translations-manager
