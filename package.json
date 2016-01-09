@@ -1,0 +1,28 @@
+{
+  "name": "react-intl-translations-manager",
+  "version": "0.0.1",
+  "description": "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GertjanReynaert/react-intl-translations-manager.git"
+  },
+  "keywords": [
+    "react",
+    "intl",
+    "translations",
+    "manager",
+    "management",
+    "managing",
+    "i18n"
+  ],
+  "author": "Gertjan Reynaert <gertjan.reynaert@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GertjanReynaert/react-intl-translations-manager/issues"
+  },
+  "homepage": "https://github.com/GertjanReynaert/react-intl-translations-manager#readme"
+}
