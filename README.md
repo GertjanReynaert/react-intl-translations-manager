@@ -1,4 +1,5 @@
 # React-intl-translations-manager
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## Installing
 
