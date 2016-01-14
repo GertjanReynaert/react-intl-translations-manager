@@ -7,6 +7,7 @@
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha",
+    "report:coverage": "cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js",
     "build": "NODE_ENV=development webpack -p --config webpack.config.base.js",
     "build:production": "NODE_ENV=production webpack -p --config webpack.config.production.js",
     "manage:translations": "babel-node ./src/locales/translationManager.js",
@@ -47,6 +48,7 @@
     "babel-preset-stage-2": "^6.3.13",
     "babel-root-import": "^3.1.0",
     "chai": "^3.4.1",
+    "codecov.io": "^0.1.6",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
@@ -54,8 +56,8 @@
     "ghooks": "^1.0.3",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
-    "webpack": "^1.12.11",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "^4.3.5",
+    "webpack": "^1.12.11"
   },
   "config": {
     "ghooks": {},

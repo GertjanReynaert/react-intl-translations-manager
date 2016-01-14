@@ -11,8 +11,13 @@ before_install:
   - npm i -g npm@^2.0.0
 before_script:
   - npm prune
+script:
+  - npm run test
+  - npm run coverage
 after_success:
+  - npm run report:coverage
   - npm run semantic-release
+  - npm run build:production
 branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  only:
+    - master
