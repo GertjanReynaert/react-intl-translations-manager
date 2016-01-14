@@ -36,8 +36,8 @@
     "glob": "^6.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-core": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
     "babel-eslint": "^5.0.0-beta6",
     "babel-istanbul": "^0.5.9",
     "babel-loader": "^6.2.0",
@@ -47,7 +47,7 @@
     "babel-root-import": "^3.1.0",
     "chai": "^3.4.1",
     "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^3.1.0",
+    "eslint-config-airbnb": "^2.1.1",
     "ghooks": "^1.0.3",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
