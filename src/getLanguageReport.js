@@ -22,14 +22,16 @@
 //   message: 'specific_message',
 // }
 
+export const initialReport = {
+  added: [],
+  untranslated: [],
+  deleted: [],
+  fileOutput: {},
+  whitelistOutput: [],
+};
+
 export default (defaultMessages, languageMessages, languageWhitelist) => {
-  const result = {
-    added: [],
-    untranslated: [],
-    deleted: [],
-    fileOutput: {},
-    whitelistOutput: [],
-  };
+  const result = initialReport;
 
   const defaultMessageKeys = Object.keys(defaultMessages);
 

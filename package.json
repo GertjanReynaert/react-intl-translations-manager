@@ -7,7 +7,7 @@
     "clean:install": "rm -rf node_modules && npm cache clean && npm install",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover --dir=$CIRCLE_ARTIFACTS node_modules/mocha/bin/_mocha",
+    "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha",
     "build": "NODE_ENV=development webpack -p --config webpack.config.base.js",
     "build:production": "NODE_ENV=production webpack -p --config webpack.config.production.js",
     "manage:translations": "babel-node ./src/locales/translationManager.js"
