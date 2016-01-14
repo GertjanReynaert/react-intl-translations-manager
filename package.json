@@ -5,7 +5,7 @@
   "main": "./dist/react-intl-translations-manager.min.js",
   "scripts": {
     "clean:install": "rm -rf node_modules && npm cache clean && npm install",
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover --dir=$CIRCLE_ARTIFACTS node_modules/mocha/bin/_mocha",
     "build": "NODE_ENV=development webpack -p --config webpack.config.base.js",
