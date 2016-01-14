@@ -1,6 +1,5 @@
 {
   "name": "react-intl-translations-manager",
-  "version": "0.0.1",
   "description": "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
   "main": "./dist/react-intl-translations-manager.min.js",
   "scripts": {
@@ -10,11 +9,12 @@
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha",
     "build": "NODE_ENV=development webpack -p --config webpack.config.base.js",
     "build:production": "NODE_ENV=production webpack -p --config webpack.config.production.js",
-    "manage:translations": "babel-node ./src/locales/translationManager.js"
+    "manage:translations": "babel-node ./src/locales/translationManager.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GertjanReynaert/react-intl-translations-manager.git"
+    "url": "https://github.com/GertjanReynaert/react-intl-translations-manager.git"
   },
   "keywords": [
     "react",
@@ -54,7 +54,8 @@
     "ghooks": "^1.0.3",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
-    "webpack": "^1.12.11"
+    "webpack": "^1.12.11",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "ghooks": {},
