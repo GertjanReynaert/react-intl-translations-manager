@@ -19,7 +19,7 @@ export default ({
   whitelistsDirectory,
   languages,
   detectDuplicateIds,
-  printDuplicateIds,
+  printers,
 }) => {
   const LANG_DIR = Path.join('./', translationsDirectory);
   const WHITELIST_DIR = Path.join('./', whitelistsDirectory);

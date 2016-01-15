@@ -93,6 +93,19 @@ itself this won't do anything unless you run any of the commands below.
 
 This will maintain all translation files. Based on your config you will get output for duplicate ids, and per specified language you will get the deleted translations, added messages (new messages that need to be translated), and not translated messages.
 
+You can optionally pass a printer object to this method. This way you can override the console logging with your own logging logic.
+
+```js
+translationManager.run();
+// or
+translationManager.run({
+  printDuplicateIds: ( duplicateIds ) => { console.log(`You have ${duplicateIds.length } duplicate IDs`) },
+  printLanguageReport: ( report ) => { console.log('Log report for a language') },
+  printNoLanguageFile: ( lang ) => { console.log(`No existing ${lang} translation file found. A new one is created.`) },
+  printNoLanguageWhitelistFile: ( lang ) => { console.log(`No existing ${lang} file found. A new one is created.`) },
+});
+```
+
 # Braindump
 
 Intended usage:

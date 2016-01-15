@@ -16,12 +16,13 @@ export const createTranslationManager = ({
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
 
-  return () => run({
+  return printers => run({
     messagesDirectory,
     translationsDirectory,
     singleMessagesFile,
     whitelistsDirectory,
     languages,
     detectDuplicateIds,
+    printers,
   });
 };
