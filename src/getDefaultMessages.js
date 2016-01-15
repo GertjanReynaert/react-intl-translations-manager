@@ -38,7 +38,7 @@
 // };
 
 export default files => {
-  if (!files) throw new Error('files are required');
+  if (!files) throw new Error('Files are required');
 
   return files.reduce((fileAcc, { descriptors }) => {
     const duplicateIds = fileAcc.duplicateIds;
