@@ -92,3 +92,29 @@ itself this won't do anything unless you run any of the commands below.
 ### run
 
 This will maintain all translation files. Based on your config you will get output for duplicate ids, and per specified language you will get the deleted translations, added messages (new messages that need to be translated), and not translated messages.
+
+# Braindump
+
+Intended usage:
+
+## Usage 1
+
+Default: Create translation manager with config, and `run` it (you can wrap run
+  with a file watcher yourself for now)
+
+## Usage 2
+
+TL;DR: Default runner with custom console printers;
+
+Create a translation manager with config, use the `run` method with a config that
+can contains custom printers, that will be used instead of the default printers
+
+## Usage 3
+
+Use the core translation manager, but specify your own console logging
+and file writing logic;
+
+## Usage 4
+
+Build your own translation manager, where you can use some of the internal
+helper methods;
