@@ -7,10 +7,10 @@ export default ({
   fileName = 'defaultMessages.json',
   jsonSpaceIndentation = 2,
 }) => {
-  if (!messages) throw new Error('messages are required');
+  if (!messages) throw new Error('Messages are required');
 
   if (!directory || typeof directory !== 'string' || directory.length === 0) {
-    throw new Error('directory is required');
+    throw new Error('Directory is required');
   }
 
   const DIR = Path.join('./', directory, fileName);
