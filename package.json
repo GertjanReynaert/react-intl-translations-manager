@@ -9,8 +9,7 @@
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha",
     "report:coverage": "cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js",
     "prebuild": "rm -rf dist && mkdir dist",
-    "build": "NODE_ENV=development webpack -p --config webpack.config.js",
-    "manage:translations": "babel-node ./src/locales/translationManager.js",
+    "build": "babel src --out-dir dist",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -42,7 +41,6 @@
     "babel-core": "^6.4.0",
     "babel-eslint": "^5.0.0-beta6",
     "babel-istanbul": "^0.6.0",
-    "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-2": "^6.3.13",
@@ -53,13 +51,10 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.15.0",
-    "ghooks": "^1.0.3",
     "mocha": "^2.3.4",
-    "semantic-release": "^4.3.5",
-    "webpack": "^1.12.11"
+    "semantic-release": "^4.3.5"
   },
   "config": {
-    "ghooks": {},
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
