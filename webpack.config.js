@@ -1,7 +1,5 @@
 var webpack = require('webpack');
 
-var env = process.env.NODE_ENV || false;
-
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
 
@@ -25,5 +23,9 @@ module.exports = {
       exclude: /node_modules/,
     },
     ],
+  },
+
+  node: {
+    fs: 'empty',
   },
 };
