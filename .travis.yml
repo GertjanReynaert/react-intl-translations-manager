@@ -16,8 +16,8 @@ script:
   - npm run coverage
 after_success:
   - npm run report:coverage
-  - npm run semantic-release
   - npm run build:production
+  - npm run semantic-release
 branches:
   only:
     - master
