@@ -16,11 +16,6 @@ module.exports = {
 
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      __DEV__: env === 'development',
-      __TEST__: env === 'test',
-      __PROD__: env === 'production',
-    }),
   ],
 
   module: {

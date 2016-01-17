@@ -8,8 +8,7 @@
     "test:watch": "npm test -- --watch",
     "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha",
     "report:coverage": "cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js",
-    "build": "NODE_ENV=development webpack -p --config webpack.config.base.js",
-    "build:production": "NODE_ENV=production webpack -p --config webpack.config.production.js",
+    "build": "NODE_ENV=development webpack -p --config webpack.config.js",
     "manage:translations": "babel-node ./src/locales/translationManager.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

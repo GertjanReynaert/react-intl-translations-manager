@@ -16,7 +16,7 @@ script:
   - npm run coverage
 after_success:
   - npm run report:coverage
-  - npm run build:production
+  - npm run build
   - npm run semantic-release
 branches:
   only:
