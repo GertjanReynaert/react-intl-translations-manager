@@ -9,6 +9,27 @@ describe('getLanguageReport', () => {
     expect(actual).to.deep.equal(getCleanReport());
   });
 
+  it('should give back an new report for an input without a translation file', () => {
+    const actual = getLanguageReport({
+      test_message: 'This is a test message',
+    }, undefined, []);
+
+    const expected = {
+      ...getCleanReport(),
+      added: [
+        {
+          key: 'test_message',
+          message: 'This is a test message',
+        },
+      ],
+      fileOutput: {
+        test_message: 'This is a test message',
+      },
+    };
+
+    expect(actual).to.deep.equal(expected);
+  });
+
   it('should give back a report with added messages', () => {
     const actual = getLanguageReport({
       test_message: 'This is a test message',

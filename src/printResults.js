@@ -8,7 +8,7 @@ export default ({
   added,
 }) => {
   if (!(deleted.length || added.length || untranslated.length)) {
-    console.log('  ', green('  Perfectly maintained, no remarks!'));
+    console.log(green('  Perfectly maintained, no remarks!'));
     newLine();
   } else {
     if (deleted.length) {

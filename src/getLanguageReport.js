@@ -30,7 +30,7 @@ export const getCleanReport = () => ({
   whitelistOutput: [],
 });
 
-export default (defaultMessages, languageMessages, languageWhitelist) => {
+export default (defaultMessages, languageMessages = {}, languageWhitelist = []) => {
   const result = getCleanReport();
 
   const defaultMessageKeys = Object.keys(defaultMessages);
