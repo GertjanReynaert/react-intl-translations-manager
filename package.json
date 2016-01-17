@@ -1,7 +1,7 @@
 {
   "name": "react-intl-translations-manager",
   "description": "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
-  "main": "./dist/react-intl-translations-manager.js",
+  "main": "./dist/index.js",
   "scripts": {
     "clean:install": "rm -rf node_modules && npm cache clean && npm install",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
