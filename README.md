@@ -16,11 +16,11 @@
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
 [npm-downloads-image]: https://img.shields.io/npm/dt/react-intl-translations-manager.svg
-[npm-downloads-url]: https://www.npmjs.com/package/react-intl-translation-manager
-[npm-version-image]: https://img.shields.io/npm/v/npm.svg
-[npm-version-url]: https://www.npmjs.com/package/react-intl-translation-manager
-[npm-license-image]: https://img.shields.io/npm/l/express.svg
-[npm-license-url]: https://www.npmjs.com/package/react-intl-translation-manager
+[npm-downloads-url]: https://www.npmjs.com/package/react-intl-translations-manager
+[npm-version-image]: https://img.shields.io/npm/v/react-intl-translations-manager.svg
+[npm-version-url]: https://www.npmjs.com/package/react-intl-translations-manager
+[npm-license-image]: https://img.shields.io/npm/l/react-intl-translations-manager.svg
+[npm-license-url]: https://www.npmjs.com/package/react-intl-translations-manager
 
 ## Installing
 
