@@ -78,5 +78,5 @@ describe('getDefaultMessages', () => {
     };
 
     expect(result).to.deep.equal(expected);
-  })
+  });
 });

@@ -1,6 +1,6 @@
 import { green, yellow, red, cyan } from 'chalk';
 
-import { newLine, subheader, header } from './printer';
+import { newLine, subheader } from './printer';
 
 export default ({
   deleted,
