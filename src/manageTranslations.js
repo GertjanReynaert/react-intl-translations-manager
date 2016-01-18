@@ -3,13 +3,13 @@ import { sync as mkdirpSync } from 'mkdirp';
 import Path from 'path';
 import { yellow, red } from 'chalk';
 
-import readFile from './readFile';
-import { header, subheader, footer } from './printer';
-import readMessageFiles from './readMessageFiles';
-import createSingleMessagesFile from './createSingleMessagesFile';
-import printResults from './printResults';
+import readFile from '~/src/readFile';
+import { header, subheader, footer } from '~/src/printer';
+import readMessageFiles from '~/src/readMessageFiles';
+import createSingleMessagesFile from '~/src/createSingleMessagesFile';
+import printResults from '~/src/printResults';
 
-import core from './core';
+import core from '~/src/core';
 
 export default ({
   messagesDirectory,
