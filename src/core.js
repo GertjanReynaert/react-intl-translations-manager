@@ -16,13 +16,13 @@ export default (languages, hooks) => {
 
   const extractedMessages = provideExtractedMessages();
 
-  outputSingleFile(extractedMessages);
+  if (typeof outputSingleFile === 'function') outputSingleFile(extractedMessages);
 
   const defaultMessages = getDefaultMessages(extractedMessages);
 
-  outputDuplicateKeys(defaultMessages.duplicateIds);
+  if (typeof outputDuplicateKeys === 'function') outputDuplicateKeys(defaultMessages.duplicateIds);
 
-  beforeReporting();
+  if (typeof beforeReporting === 'function') beforeReporting();
 
   languages.forEach(lang => {
     const langResults = provideLangTemplate(lang);
@@ -35,8 +35,8 @@ export default (languages, hooks) => {
 
     langResults.report = getLanguageReport(defaultMessages.messages, file, whitelistFile);
 
-    reportLanguage(langResults);
+    if (typeof reportLanguage === 'function') reportLanguage(langResults);
   });
 
-  afterReporting();
+  if (typeof afterReporting === 'function') afterReporting();
 };
