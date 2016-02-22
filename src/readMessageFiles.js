@@ -15,11 +15,9 @@ export default messagesDirectory => {
   const EXTRACTED_MESSAGES = Path.join(EXTRACTED_MESSAGES_DIR, '**/*.json');
 
   return globSync(EXTRACTED_MESSAGES)
-  .map(filename => {
-    return {
-      path: filename.substring(EXTRACTED_MESSAGES_DIR.length),
-      descriptors: JSON.parse(readFileSync(filename, 'utf8')),
-    };
-  })
+  .map(filename => ({
+    path: filename.substring(EXTRACTED_MESSAGES_DIR.length),
+    descriptors: JSON.parse(readFileSync(filename, 'utf8')),
+  }))
   .filter(file => file.descriptors.length > 0);
 };
