@@ -11,7 +11,7 @@ export default messagesDirectory => {
     throw new Error('messagesDirectory is required');
   }
 
-  const EXTRACTED_MESSAGES_DIR = Path.join('./', messagesDirectory, '/');
+  const EXTRACTED_MESSAGES_DIR = Path.join(messagesDirectory, '/');
   const EXTRACTED_MESSAGES = Path.join(EXTRACTED_MESSAGES_DIR, '**/*.json');
 
   return globSync(EXTRACTED_MESSAGES)

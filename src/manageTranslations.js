@@ -48,8 +48,8 @@ export default ({
       }
     },
     beforeReporting: () => {
-      mkdirpSync(Path.join('./', translationsDirectory));
-      mkdirpSync(Path.join('./', whitelistsDirectory));
+      mkdirpSync(translationsDirectory);
+      mkdirpSync(whitelistsDirectory);
     },
     provideLangTemplate: lang => {
       const languageFilename = `${lang}.json`;
