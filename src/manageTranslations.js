@@ -27,7 +27,12 @@ export default ({
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
     outputSingleFile: combinedFiles => {
-      if (singleMessagesFile) createSingleMessagesFile({ messages: combinedFiles, directory: translationsDirectory });
+      if (singleMessagesFile) {
+        createSingleMessagesFile({
+          messages: combinedFiles,
+          directory: translationsDirectory,
+        });
+      }
     },
     outputDuplicateKeys: duplicateIds => {
       if (detectDuplicateIds) {
@@ -47,7 +52,7 @@ export default ({
       mkdirpSync(Path.join('./', whitelistsDirectory));
     },
     provideLangTemplate: lang => {
-      const languageFilename = lang + '.json';
+      const languageFilename = `${lang}.json`;
       const languageFilepath = Path.join(translationsDirectory, languageFilename);
       const whitelistFilename = `whitelist_${lang}.json`;
       const whitelistFilepath = Path.join(whitelistsDirectory, whitelistFilename);
@@ -61,7 +66,7 @@ export default ({
       };
     },
     provideTranslationsFile: lang => {
-      const filePath = Path.join(translationsDirectory, lang + '.json');
+      const filePath = Path.join(translationsDirectory, `${lang}.json`);
       const jsonFile = readFile(filePath);
       return jsonFile ? JSON.parse(jsonFile) : undefined;
     },

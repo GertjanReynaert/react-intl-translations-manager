@@ -1,8 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb/base",
-  "globals": {
-    "describe": false,
-    "it": false
+  "env": {
+    "mocha": true
   }
 }
