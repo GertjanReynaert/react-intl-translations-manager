@@ -13,7 +13,7 @@ export default ({
     throw new Error('Directory is required');
   }
 
-  const DIR = Path.join('./', directory, fileName);
+  const DIR = Path.join(directory, fileName);
 
   writeFileSync(DIR, JSON.stringify(messages, null, jsonSpaceIndentation));
 };
