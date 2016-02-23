@@ -1,5 +1,5 @@
-import getDefaultMessages from '~/src/getDefaultMessages';
-import getLanguageReport from '~/src/getLanguageReport';
+import getDefaultMessages from './getDefaultMessages';
+import getLanguageReport from './getLanguageReport';
 
 export default (languages, hooks) => {
   const {

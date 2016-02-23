@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import getLanguageReport, { getCleanReport } from '~/src/getLanguageReport';
+import getLanguageReport, { getCleanReport } from '../src/getLanguageReport';
 
 describe('getLanguageReport', () => {
   it('should give back an empty report for an input without messages', () => {

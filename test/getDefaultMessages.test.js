@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import getDefaultMessages from '~/src/getDefaultMessages';
+import getDefaultMessages from '../src/getDefaultMessages';
 
 describe('getDefaultMessages', () => {
   it('should throw an error if no files are passed', () => {
