@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
 import { sync as mkdirpSync } from 'mkdirp';
 import Path from 'path';
-import { yellow, red } from 'chalk';
+import { yellow, red, green } from 'chalk';
 
 import readFile from './readFile';
 import { header, subheader, footer } from './printer';
@@ -39,10 +39,14 @@ export default ({
         if (typeof printers.printDuplicateIds === 'function') {
           printers.printDuplicateIds(duplicateIds);
         } else {
-          header('Detecting duplicate ids:');
-          duplicateIds.forEach(id => {
-            console.log('  ', `Duplicate message id: ${red(id)}`);
-          });
+          header('Duplicate ids:');
+          if (duplicateIds.length) {
+            duplicateIds.forEach(id => {
+              console.log('  ', `Duplicate message id: ${red(id)}`);
+            });
+          } else {
+            console.log(green('  No duplicate ids found, great!'));
+          }
           footer();
         }
       }
