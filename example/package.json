@@ -1,0 +1,27 @@
+{
+  "name": "translation_manager_example",
+  "version": "1.0.0",
+  "description": "Example to test and demostrate the usage of this plugin",
+  "private": true,
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "manage:translations": "babel-node ./translationRunner.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-intl": "^1.2.2"
+  },
+  "config": {
+    "babel": {
+      "presets": ["react", "es2015"],
+      "plugins":  [
+        "react-intl",
+        {
+          "messagesDir": "./src/locales/extractedMessages"
+        }
+      ]
+    }
+  }
+}
