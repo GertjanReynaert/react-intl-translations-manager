@@ -1,5 +1,6 @@
 import Path from 'path';
 import { writeFileSync } from 'fs';
+import stringify from 'json-stable-stringify';
 
 export default ({
   messages,
@@ -15,5 +16,5 @@ export default ({
 
   const DIR = Path.join(directory, fileName);
 
-  writeFileSync(DIR, JSON.stringify(messages, null, jsonSpaceIndentation));
+  writeFileSync(DIR, stringify(messages, {space: jsonSpaceIndentation}));
 };

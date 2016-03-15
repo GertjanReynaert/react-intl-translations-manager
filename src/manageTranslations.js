@@ -2,6 +2,7 @@ import { writeFileSync } from 'fs';
 import { sync as mkdirpSync } from 'mkdirp';
 import Path from 'path';
 import { yellow, red, green } from 'chalk';
+import stringify from 'json-stable-stringify';
 
 import readFile from './readFile';
 import { header, subheader, footer } from './printer';
@@ -90,11 +91,11 @@ export default ({
 
         writeFileSync(
           langResults.languageFilepath,
-          JSON.stringify(langResults.report.fileOutput, null, 2)
+          stringify(langResults.report.fileOutput, {space: 2})
         );
         writeFileSync(
           langResults.whitelistFilepath,
-          JSON.stringify(langResults.report.whitelistOutput, null, 2)
+          stringify(langResults.report.whitelistOutput, {space: 2})
         );
       } else {
         if (langResults.report.noTranslationFile) {
@@ -106,7 +107,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults, JSON.stringify(langResults.report.fileOutput, null, 2));
+          writeFileSync(langResults, stringify(langResults.report.fileOutput, {space: 2}));
         }
 
         if (langResults.report.noWhitelistFile) {
@@ -118,7 +119,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults.whitelistFilepath, JSON.stringify([], null, 2));
+          writeFileSync(langResults.whitelistFilepath, stringify([], {space: 2}));
         }
       }
     },
