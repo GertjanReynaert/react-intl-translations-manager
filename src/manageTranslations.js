@@ -8,6 +8,7 @@ import { header, subheader, footer } from './printer';
 import readMessageFiles from './readMessageFiles';
 import createSingleMessagesFile from './createSingleMessagesFile';
 import printResults from './printResults';
+import stringify from './stringify';
 
 import core from './core';
 
@@ -18,12 +19,18 @@ export default ({
   languages = [],
   singleMessagesFile = false,
   detectDuplicateIds = true,
+  sortKeys = true,
   printers = {},
+  jsonSpaceIndentation = 2,
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
 
+  const stringifyOpts = {
+    space: jsonSpaceIndentation,
+    sortKeys,
+  };
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
     outputSingleFile: combinedFiles => {
@@ -31,6 +38,7 @@ export default ({
         createSingleMessagesFile({
           messages: combinedFiles,
           directory: translationsDirectory,
+          sortKeys,
         });
       }
     },
@@ -85,16 +93,16 @@ export default ({
           printers.printLanguageReport(langResults.languageFilename, langResults.report);
         } else {
           header(`Maintaining ${yellow(langResults.languageFilename)}:`);
-          printResults(langResults.report);
+          printResults({ ...langResults.report, sortKeys });
         }
 
         writeFileSync(
           langResults.languageFilepath,
-          JSON.stringify(langResults.report.fileOutput, null, 2)
+          stringify(langResults.report.fileOutput, stringifyOpts)
         );
         writeFileSync(
           langResults.whitelistFilepath,
-          JSON.stringify(langResults.report.whitelistOutput, null, 2)
+          stringify(langResults.report.whitelistOutput, stringifyOpts)
         );
       } else {
         if (langResults.report.noTranslationFile) {
@@ -106,7 +114,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults, JSON.stringify(langResults.report.fileOutput, null, 2));
+          writeFileSync(langResults, stringify(langResults.report.fileOutput, stringifyOpts));
         }
 
         if (langResults.report.noWhitelistFile) {
@@ -118,7 +126,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults.whitelistFilepath, JSON.stringify([], null, 2));
+          writeFileSync(langResults.whitelistFilepath, stringify([], stringifyOpts));
         }
       }
     },
