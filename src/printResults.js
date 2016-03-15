@@ -2,6 +2,11 @@ import { green, yellow, red, cyan } from 'chalk';
 
 import { newLine, subheader } from './printer';
 
+function sortByKey(a, b) {
+  var ka = a.key, kb = b.key;
+  return ka < kb ? -1 : ka > kb ? 1 : 0;
+}
+
 export default ({
   deleted,
   untranslated,
@@ -13,19 +18,19 @@ export default ({
   } else {
     if (deleted.length) {
       subheader('Deleted keys:');
-      deleted.forEach(({ key, message }) => console.log(`  ${red(key)}: ${cyan(message)}`));
+      deleted.sort(sortByKey).forEach(({ key, message }) => console.log(`  ${red(key)}: ${cyan(message)}`));
       newLine();
     }
 
     if (untranslated.length) {
       subheader('Untranslated keys:');
-      untranslated.forEach(({ key, message }) => console.log(`  ${yellow(key)}: ${cyan(message)}`));
+      untranslated.sort(sortByKey).forEach(({ key, message }) => console.log(`  ${yellow(key)}: ${cyan(message)}`));
       newLine();
     }
 
     if (added.length) {
       subheader('Added keys:');
-      added.forEach(({ key, message }) => console.log(`  ${green(key)}: ${cyan(message)}`));
+      added.sort(sortByKey).forEach(({ key, message }) => console.log(`  ${green(key)}: ${cyan(message)}`));
       newLine();
     }
   }
