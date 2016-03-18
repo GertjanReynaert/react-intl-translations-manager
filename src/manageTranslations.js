@@ -2,13 +2,13 @@ import { writeFileSync } from 'fs';
 import { sync as mkdirpSync } from 'mkdirp';
 import Path from 'path';
 import { yellow, red, green } from 'chalk';
-import stringify from 'json-stable-stringify';
 
 import readFile from './readFile';
 import { header, subheader, footer } from './printer';
 import readMessageFiles from './readMessageFiles';
 import createSingleMessagesFile from './createSingleMessagesFile';
 import printResults from './printResults';
+import stringify from './stringify';
 
 import core from './core';
 
@@ -19,11 +19,18 @@ export default ({
   languages = [],
   singleMessagesFile = false,
   detectDuplicateIds = true,
+  sortObjectsByKey = false,
   printers = {},
+  jsonSpaceIndentation = 2,
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
+  
+  var stringifyOpts = {
+    space: jsonSpaceIndentation,
+    sortKeys: sortObjectsByKey
+  };
 
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
@@ -32,6 +39,7 @@ export default ({
         createSingleMessagesFile({
           messages: combinedFiles,
           directory: translationsDirectory,
+          sortObjectsByKey
         });
       }
     },
@@ -86,16 +94,16 @@ export default ({
           printers.printLanguageReport(langResults.languageFilename, langResults.report);
         } else {
           header(`Maintaining ${yellow(langResults.languageFilename)}:`);
-          printResults(langResults.report);
+          printResults({...langResults.report, sortObjectsByKey});
         }
 
         writeFileSync(
           langResults.languageFilepath,
-          stringify(langResults.report.fileOutput, {space: 2})
+          stringify(langResults.report.fileOutput, stringifyOpts)
         );
         writeFileSync(
           langResults.whitelistFilepath,
-          stringify(langResults.report.whitelistOutput, {space: 2})
+          stringify(langResults.report.whitelistOutput, stringifyOpts)
         );
       } else {
         if (langResults.report.noTranslationFile) {
@@ -107,7 +115,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults, stringify(langResults.report.fileOutput, {space: 2}));
+          writeFileSync(langResults, stringify(langResults.report.fileOutput, stringifyOpts));
         }
 
         if (langResults.report.noWhitelistFile) {
@@ -119,7 +127,7 @@ export default ({
               A new one is created.
             ```);
           }
-          writeFileSync(langResults.whitelistFilepath, stringify([], {space: 2}));
+          writeFileSync(langResults.whitelistFilepath, stringify([], stringifyOpts));
         }
       }
     },
