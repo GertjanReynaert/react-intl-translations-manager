@@ -114,6 +114,8 @@ You can optionally pass a printer object to this method. This way you can overri
   ```
 - `detectDuplicateIds` (optional, default: `true`)
   - If you want the translationManager to log duplicate message ids or not
+- `sortKeys` (optional, default: `true`)
+  - If you want the translationManager to sort it's output, both json and console output
 - `printers` (optional, default: {})
   - Here you can specify custom logging methods. If not specified a default printer is used.
   - Possible printers to configure:
