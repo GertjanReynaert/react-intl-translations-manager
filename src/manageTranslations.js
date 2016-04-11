@@ -19,19 +19,18 @@ export default ({
   languages = [],
   singleMessagesFile = false,
   detectDuplicateIds = true,
-  sortObjectsByKey = false,
+  sortKeys = true,
   printers = {},
   jsonSpaceIndentation = 2,
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
-  
-  var stringifyOpts = {
-    space: jsonSpaceIndentation,
-    sortKeys: sortObjectsByKey
-  };
 
+  const stringifyOpts = {
+    space: jsonSpaceIndentation,
+    sortKeys,
+  };
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
     outputSingleFile: combinedFiles => {
@@ -39,7 +38,7 @@ export default ({
         createSingleMessagesFile({
           messages: combinedFiles,
           directory: translationsDirectory,
-          sortObjectsByKey
+          sortKeys,
         });
       }
     },
@@ -94,7 +93,7 @@ export default ({
           printers.printLanguageReport(langResults.languageFilename, langResults.report);
         } else {
           header(`Maintaining ${yellow(langResults.languageFilename)}:`);
-          printResults({...langResults.report, sortObjectsByKey});
+          printResults({ ...langResults.report, sortKeys });
         }
 
         writeFileSync(

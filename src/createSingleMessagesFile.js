@@ -6,16 +6,21 @@ export default ({
   messages,
   directory,
   fileName = 'defaultMessages.json',
-  sortObjectsByKey = false,
+  sortKeys = true,
   jsonSpaceIndentation = 2,
 }) => {
-  if (!messages)
+  if (!messages) {
     throw new Error('Messages are required');
+  }
 
-  if (!directory || typeof directory !== 'string' || directory.length === 0)
+  if (!directory || typeof directory !== 'string' || directory.length === 0) {
     throw new Error('Directory is required');
+  }
 
   const DIR = Path.join(directory, fileName);
 
-  writeFileSync(DIR, stringify(messages, {space: jsonSpaceIndentation, sortKeys: sortObjectsByKey}));
+  writeFileSync(
+    DIR,
+    stringify(messages, { space: jsonSpaceIndentation, sortKeys })
+  );
 };

@@ -7,33 +7,30 @@ export default ({
   deleted,
   untranslated,
   added,
-  sortObjectsByKey = false,
-}) => {console.log("Sort? ", sortObjectsByKey);
+  sortKeys = true,
+}) => {
   if (!(deleted.length || added.length || untranslated.length)) {
     console.log(green('  Perfectly maintained, no remarks!'));
     newLine();
   } else {
     if (deleted.length) {
-      if (sortObjectsByKey)
-        deleted = deleted.sort(compareByKey);
+      const items = sortKeys ? deleted.sort(compareByKey) : deleted;
       subheader('Deleted keys:');
-      deleted.forEach(({ key, message }) => console.log(`  ${red(key)}: ${cyan(message)}`));
+      items.forEach(({ key, message }) => console.log(`  ${red(key)}: ${cyan(message)}`));
       newLine();
     }
 
     if (untranslated.length) {
-      if (sortObjectsByKey)
-        untranslated = untranslated.sort(compareByKey);
+      const items = sortKeys ? untranslated.sort(compareByKey) : untranslated;
       subheader('Untranslated keys:');
-      untranslated.forEach(({ key, message }) => console.log(`  ${yellow(key)}: ${cyan(message)}`));
+      items.forEach(({ key, message }) => console.log(`  ${yellow(key)}: ${cyan(message)}`));
       newLine();
     }
 
     if (added.length) {
-      if (sortObjectsByKey)
-        added = added.sort(compareByKey);
+      const items = sortKeys ? added.sort(compareByKey) : added;
       subheader('Added keys:');
-      added.forEach(({ key, message }) => console.log(`  ${green(key)}: ${cyan(message)}`));
+      items.forEach(({ key, message }) => console.log(`  ${green(key)}: ${cyan(message)}`));
       newLine();
     }
   }

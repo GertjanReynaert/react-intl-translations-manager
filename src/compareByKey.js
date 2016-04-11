@@ -1,4 +1,12 @@
-export default function compareByKey(a, b) {
-  var ka = a.key, kb = b.key;
-  return ka < kb ? -1 : ka > kb ? 1 : 0;
-}
+export default (a, b) => {
+  const ka = a.key;
+  const kb = b.key;
+
+  if (ka < kb) {
+    return -1;
+  }
+  if (ka > kb) {
+    return 1;
+  }
+  return 0;
+};
