@@ -22,13 +22,21 @@
 [npm-license-image]: https://img.shields.io/npm/l/react-intl-translations-manager.svg
 [npm-license-url]: https://www.npmjs.com/package/react-intl-translations-manager
 
+React-intl-translations-manager will help you in managing your translations.
+Hereby it will give you the current status of your translation, telling you what
+duplicate keys you have, what messages aren't translated yet, what messages were
+added/deleted since the last time you checked.
+
+You'll still need to update the translations manually in your json files, but
+now you know what messages you still need to update.
+
 ## Installing
 
 ```
 npm install --save-dev react-intl-translations-manager
 ```
 
-## Usage
+## Setup
 ### Basic
 
 Since you need the `babel-plugin-react-intl` to extract the messages, I'll assume you're using babel in your project.
@@ -65,6 +73,17 @@ npm run manage:translations
 
 Build your own translationManager based on the core of this package, or it's
 exposed helper methods.
+
+## Usage
+
+Now you can check the status of your translations by just running the script. Then
+you can change the missing translations in the translation files.
+
+If you encounter messages that are identical in translation in a certain
+language as in your default language (example: Dashboard (english) = Dashboard (dutch)),
+then you can whitelist the translation-key in the language specific whitelist
+file. This will prevent the message from showing up as untranslated when
+checking the translations status.
 
 ## API
 
