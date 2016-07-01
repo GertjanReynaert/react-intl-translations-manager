@@ -51,7 +51,7 @@
     "codecov.io": "^0.1.6",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^2.7.0",
-    "eslint-config-airbnb": "^7.0.0",
+    "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-react": "^4.3.0",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5"
