@@ -1,5 +1,6 @@
 import Path from 'path';
 import { writeFileSync } from 'fs';
+import { sync as mkdirpSync } from 'mkdirp';
 import stringify from './stringify';
 
 export default ({
@@ -19,6 +20,7 @@ export default ({
 
   const DIR = Path.join(directory, fileName);
 
+  mkdirpSync(directory);
   writeFileSync(
     DIR,
     stringify(messages, { space: jsonSpaceIndentation, sortKeys })
