@@ -17,6 +17,7 @@ export default ({
   translationsDirectory,
   whitelistsDirectory = translationsDirectory,
   languages = [],
+  defaultLanguage,
   singleMessagesFile = false,
   detectDuplicateIds = true,
   sortKeys = true,
@@ -31,6 +32,7 @@ export default ({
     space: jsonSpaceIndentation,
     sortKeys,
   };
+
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
     outputSingleFile: combinedFiles => {
@@ -128,6 +130,21 @@ export default ({
           }
           writeFileSync(langResults.whitelistFilepath, stringify([], stringifyOpts));
         }
+      }
+    },
+    defaultLanguage,
+    reportDefaultLanguage: langResults => {
+      if (langResults.report.noTranslationFile) {
+        subheader(```
+          No existing default language file found.
+          A new one is created.
+        ```);
+        writeFileSync(langResults, stringify(langResults.report.fileOutput, stringifyOpts));
+      } else {
+        writeFileSync(
+          langResults.languageFilepath,
+          stringify(langResults.report.fileOutput, stringifyOpts)
+        );
       }
     },
   });

@@ -11,6 +11,8 @@ export default (languages, hooks) => {
     provideTranslationsFile,
     provideWhitelistFile,
     reportLanguage,
+    defaultLanguage,
+    reportDefaultLanguage,
     afterReporting,
   } = hooks;
 
@@ -24,7 +26,11 @@ export default (languages, hooks) => {
 
   if (typeof beforeReporting === 'function') beforeReporting();
 
-  languages.forEach(lang => {
+  const filteredLanguages = defaultLanguage
+    ? languages.filter(lang => lang !== defaultLanguage)
+    : languages;
+
+  filteredLanguages.forEach(lang => {
     const langResults = provideLangTemplate(lang);
 
     const file = provideTranslationsFile(lang);
@@ -37,6 +43,18 @@ export default (languages, hooks) => {
 
     if (typeof reportLanguage === 'function') reportLanguage(langResults);
   });
+
+  if (typeof defaultLanguage === 'string') {
+    const langResults = provideLangTemplate(defaultLanguage);
+
+    const file = provideTranslationsFile(defaultLanguage);
+
+    if (!file) langResults.noTranslationFile = true;
+
+    langResults.report = getLanguageReport(defaultMessages.messages, file);
+
+    if (typeof reportDefaultLanguage === 'function') reportDefaultLanguage(langResults);
+  }
 
   if (typeof afterReporting === 'function') afterReporting();
 };
