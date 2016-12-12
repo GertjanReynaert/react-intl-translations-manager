@@ -22,6 +22,7 @@ export default ({
   sortKeys = true,
   printers = {},
   jsonSpaceIndentation = 2,
+  jsonTrailingNewline = false
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
@@ -29,6 +30,7 @@ export default ({
 
   const stringifyOpts = {
     space: jsonSpaceIndentation,
+    trailingNewline: jsonTrailingNewline,
     sortKeys,
   };
   core(languages, {

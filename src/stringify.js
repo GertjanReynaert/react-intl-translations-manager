@@ -5,8 +5,10 @@ export default (value, {
   replacer = null,
   space = 2,
   sortKeys = true,
+  trailingNewline = false,
 }) => (
-  sortKeys
+  (sortKeys
     ? stableStringify(value, { replacer, space, cmp: compareByKey })
-    : JSON.stringify(value, replacer, space)
+    : JSON.stringify(value, replacer, space)) +
+  (trailingNewline ? '\n' : '')
 );
