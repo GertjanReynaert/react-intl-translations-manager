@@ -54,7 +54,12 @@ Create a script in your package.json
 Create a file with your config you can run with the npm script
 ```js
 // translationRunner.js
-import manageTranslations from 'react-intl-translations-manager';
+
+// ES6 version:
+//import manageTranslations from 'react-intl-translations-manager';
+
+// ES5 version:
+var manageTranslations = require('react-intl-translations-manager').default;
 
 manageTranslations({
   messagesDirectory: 'src/translations/extractedMessages',
