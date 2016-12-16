@@ -26,11 +26,49 @@ export default ({
   singleMessagesFile = false,
   detectDuplicateIds = true,
   sortKeys = true,
-  printers = {},
   jsonOptions = {},
+  overridePrinters = {},
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
+  }
+
+  const defaultPrinters = {
+    printDuplicateIds(duplicateIds) {
+      header('Duplicate ids:');
+      if (duplicateIds.length) {
+        duplicateIds.forEach(id => {
+          console.log('  ', `Duplicate message id: ${red(id)}`);
+        });
+      } else {
+        console.log(green('  No duplicate ids found, great!'));
+      }
+      footer();
+    },
+
+    printLanguageReport(langResults) {
+      header(`Maintaining ${yellow(langResults.languageFilename)}:`);
+      printResults({ ...langResults.report, sortKeys });
+    }
+
+   printNoLanguageFile(langResults) {
+     subheader(`
+        No existing ${langResults.languageFilename} translation file found.
+        A new one is created.
+      `);
+    }
+
+    printNoLanguageWhitelistFile(langResults) {
+      subheader(```
+        No existing ${langResults} file found.
+        A new one is created.
+      ```);
+    }
+  };
+
+  const printers = {
+    ...defaultPrinters,
+    ...overridePrinters,
   }
 
   const stringifyOpts = {
@@ -41,6 +79,7 @@ export default ({
 
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
+
     outputSingleFile: combinedFiles => {
       if (singleMessagesFile) {
         createSingleMessagesFile({
@@ -50,27 +89,18 @@ export default ({
         });
       }
     },
+
     outputDuplicateKeys: duplicateIds => {
-      if (detectDuplicateIds) {
-        if (typeof printers.printDuplicateIds === 'function') {
-          printers.printDuplicateIds(duplicateIds);
-        } else {
-          header('Duplicate ids:');
-          if (duplicateIds.length) {
-            duplicateIds.forEach(id => {
-              console.log('  ', `Duplicate message id: ${red(id)}`);
-            });
-          } else {
-            console.log(green('  No duplicate ids found, great!'));
-          }
-          footer();
-        }
-      }
+      if (detectDuplicateIds) return;
+
+      printers.printDuplicateIds(duplicateIds);
     },
+
     beforeReporting: () => {
       mkdirpSync(translationsDirectory);
       mkdirpSync(whitelistsDirectory);
     },
+
     provideLangTemplate: lang => {
       const languageFilename = `${lang}.json`;
       const languageFilepath = Path.join(translationsDirectory, languageFilename);
@@ -85,24 +115,22 @@ export default ({
         whitelistFilepath,
       };
     },
+
     provideTranslationsFile: lang => {
       const filePath = Path.join(translationsDirectory, `${lang}.json`);
       const jsonFile = readFile(filePath);
       return jsonFile ? JSON.parse(jsonFile) : undefined;
     },
+
     provideWhitelistFile: lang => {
       const filePath = Path.join(whitelistsDirectory, `whitelist_${lang}.json`);
       const jsonFile = readFile(filePath);
       return jsonFile ? JSON.parse(jsonFile) : undefined;
     },
+
     reportLanguage: langResults => {
       if (!langResults.report.noTranslationFile && !langResults.report.noWhitelistFile) {
-        if (typeof printers.printLanguageReport === 'function') {
-          printers.printLanguageReport(langResults.languageFilename, langResults.report);
-        } else {
-          header(`Maintaining ${yellow(langResults.languageFilename)}:`);
-          printResults({ ...langResults.report, sortKeys });
-        }
+        printers.printLanguageReport(langResults);
 
         writeFileSync(
           langResults.languageFilepath,
@@ -114,26 +142,12 @@ export default ({
         );
       } else {
         if (langResults.report.noTranslationFile) {
-          if (typeof printers.printNoLanguageFile === 'function') {
-            printers.printNoLanguageFile(langResults.lang);
-          } else {
-            subheader(```
-              No existing ${langResults.languageFilename} translation file found.
-              A new one is created.
-            ```);
-          }
+          printers.printNoLanguageFile(langResults);
           writeFileSync(langResults, stringify(langResults.report.fileOutput, stringifyOpts));
         }
 
         if (langResults.report.noWhitelistFile) {
-          if (typeof printers.printNoLanguageWhitelistFile === 'function') {
-            printers.printNoLanguageWhitelistFile(langResults.lang);
-          } else {
-            subheader(```
-              No existing ${langResults.whitelistFilename} file found.
-              A new one is created.
-            ```);
-          }
+          printers.printNoLanguageWhitelistFile(langResults);
           writeFileSync(langResults.whitelistFilepath, stringify([], stringifyOpts));
         }
       }
