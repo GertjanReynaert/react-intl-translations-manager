@@ -1,11 +1,9 @@
-import { expect } from 'chai';
-
 import getDefaultMessages from '../src/getDefaultMessages';
 
 describe('getDefaultMessages', () => {
   it('should throw an error if no files are passed', () => {
     const files = undefined;
-    expect(() => getDefaultMessages(files)).to.throw(Error);
+    expect(() => getDefaultMessages(files)).toThrow(Error);
   });
 
   it('should give back all default messages', () => {
@@ -33,7 +31,7 @@ describe('getDefaultMessages', () => {
       },
     };
 
-    expect(result).to.deep.equal(expected);
+    expect(result).toEqual(expected);
   });
 
   it('should give back all default messages, and all duplicate keys', () => {
@@ -77,6 +75,6 @@ describe('getDefaultMessages', () => {
       },
     };
 
-    expect(result).to.deep.equal(expected);
+    expect(result).toEqual(expected);
   });
 });

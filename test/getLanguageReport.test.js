@@ -1,12 +1,10 @@
-import { expect } from 'chai';
-
 import getLanguageReport, { getCleanReport } from '../src/getLanguageReport';
 
 describe('getLanguageReport', () => {
   it('should give back an empty report for an input without messages', () => {
     const actual = getLanguageReport({}, {}, []);
 
-    expect(actual).to.deep.equal(getCleanReport());
+    expect(actual).toEqual(getCleanReport());
   });
 
   it('should give back an new report for an input without a translation file', () => {
@@ -27,7 +25,7 @@ describe('getLanguageReport', () => {
       },
     };
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should give back a report with added messages', () => {
@@ -48,7 +46,7 @@ describe('getLanguageReport', () => {
       },
     };
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should give back a report with untranslated messages', () => {
@@ -71,7 +69,7 @@ describe('getLanguageReport', () => {
       },
     };
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should give back a report with deleted messages', () => {
@@ -89,7 +87,7 @@ describe('getLanguageReport', () => {
       ],
     };
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should give back a detailed report', () => {
@@ -143,6 +141,6 @@ describe('getLanguageReport', () => {
       ],
     };
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 });
