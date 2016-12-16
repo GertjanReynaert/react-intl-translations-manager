@@ -1,6 +1,5 @@
 {
   "name": "react-intl-translations-manager",
-  "version": "3.2.1",
   "description": "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
   "main": "./dist/index.js",
   "scripts": {
