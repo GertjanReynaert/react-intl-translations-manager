@@ -12,6 +12,12 @@ import stringify from './stringify';
 
 import core from './core';
 
+
+const defaultJSONOptions = {
+  space: 2,
+  trailingNewline: false,
+};
+
 export default ({
   messagesDirectory,
   translationsDirectory,
@@ -21,18 +27,18 @@ export default ({
   detectDuplicateIds = true,
   sortKeys = true,
   printers = {},
-  jsonSpaceIndentation = 2,
-  jsonTrailingNewline = false,
+  jsonOptions = {},
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
 
   const stringifyOpts = {
-    space: jsonSpaceIndentation,
-    trailingNewline: jsonTrailingNewline,
+    ...defaultJSONOptions,
+    ...jsonOptions,
     sortKeys,
   };
+
   core(languages, {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
     outputSingleFile: combinedFiles => {
