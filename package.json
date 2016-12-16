@@ -7,7 +7,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "npm test -- --watch",
     "coverage": "cross-env npm test -- --coverage --maxWorkers=4",
-    "report:coverage": "cat ./coverage/coverage.json | ./node_modules/codecov.io/bin/codecov.io.js",
+    "report:coverage": "cat ./coverage/coverage-final.json | ./node_modules/codecov.io/bin/codecov.io.js",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
@@ -57,6 +57,10 @@
     "jest": "^18.0.0",
     "rimraf": "^2.5.4",
     "semantic-release": "^6.3.2"
+  },
+  "jest": {
+    "coverageDirectory": "coverage",
+    "testEnvironment": "node"
   },
   "config": {
     "commitizen": {
