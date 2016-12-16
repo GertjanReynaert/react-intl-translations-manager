@@ -209,28 +209,10 @@ manageTranslations({
 *This config is only as illustration for all possible options, these arent
 recommended configuration options.
 
-### core
-```js
-core(languages, hooks);
-```
+### CoreMethods
 
-This is the core of the translationManager. It just takes a list of languages
-and an object with all kinds of hooks it will execute when running. Below you
-can find all hooks.
-
-```js
-const hooks = {
-  provideExtractedMessages,
-  outputSingleFile,
-  outputDuplicateKeys,
-  beforeReporting,
-  provideLangTemplate,
-  provideTranslationsFile,
-  provideWhitelistFile,
-  reportLanguage,
-  afterReporting,
-};
-```
+These are the core methods of the translationManager and what purpose they
+serve.
 
 #### provideExtractedMessages
 ```js
