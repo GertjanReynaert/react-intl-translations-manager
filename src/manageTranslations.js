@@ -100,11 +100,11 @@ export default ({
 
         writeFileSync(
           langResults.languageFilepath,
-          stringify(langResults.report.fileOutput, stringifyOpts)
+          stringify(langResults.report.fileOutput, stringifyOpts),
         );
         writeFileSync(
           langResults.whitelistFilepath,
-          stringify(langResults.report.whitelistOutput, stringifyOpts)
+          stringify(langResults.report.whitelistOutput, stringifyOpts),
         );
       } else {
         if (langResults.report.noTranslationFile) {

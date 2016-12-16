@@ -23,6 +23,6 @@ export default ({
   mkdirpSync(directory);
   writeFileSync(
     DIR,
-    stringify(messages, { space: jsonSpaceIndentation, sortKeys })
+    stringify(messages, { space: jsonSpaceIndentation, sortKeys }),
   );
 };
