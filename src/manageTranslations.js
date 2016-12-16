@@ -12,7 +12,6 @@ import stringify from './stringify';
 
 import core from './core';
 
-
 const defaultJSONOptions = {
   space: 2,
   trailingNewline: false,
@@ -28,13 +27,14 @@ export default ({
   sortKeys = true,
   jsonOptions = {},
   overridePrinters = {},
+  overrideCoreMethods = {},
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
   }
 
   const defaultPrinters = {
-    printDuplicateIds(duplicateIds) {
+    printDuplicateIds: duplicateIds => {
       header('Duplicate ids:');
       if (duplicateIds.length) {
         duplicateIds.forEach(id => {
@@ -46,30 +46,30 @@ export default ({
       footer();
     },
 
-    printLanguageReport(langResults) {
+    printLanguageReport: langResults => {
       header(`Maintaining ${yellow(langResults.languageFilename)}:`);
       printResults({ ...langResults.report, sortKeys });
-    }
+    },
 
-   printNoLanguageFile(langResults) {
-     subheader(`
+    printNoLanguageFile: langResults => {
+      subheader(`
         No existing ${langResults.languageFilename} translation file found.
         A new one is created.
       `);
-    }
+    },
 
-    printNoLanguageWhitelistFile(langResults) {
+    printNoLanguageWhitelistFile: langResults => {
       subheader(```
         No existing ${langResults} file found.
         A new one is created.
       ```);
-    }
+    },
   };
 
   const printers = {
     ...defaultPrinters,
     ...overridePrinters,
-  }
+  };
 
   const stringifyOpts = {
     ...defaultJSONOptions,
@@ -77,7 +77,7 @@ export default ({
     sortKeys,
   };
 
-  core(languages, {
+  const defaultCoreMethods = {
     provideExtractedMessages: () => readMessageFiles(messagesDirectory),
 
     outputSingleFile: combinedFiles => {
@@ -152,5 +152,12 @@ export default ({
         }
       }
     },
+
+    afterReporting: () => {},
+  };
+
+  core(languages, {
+    ...defaultCoreMethods,
+    ...overrideCoreMethods,
   });
 };
