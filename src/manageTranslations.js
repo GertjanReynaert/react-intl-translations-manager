@@ -22,7 +22,7 @@ export default ({
   sortKeys = true,
   printers = {},
   jsonSpaceIndentation = 2,
-  jsonTrailingNewline = false
+  jsonTrailingNewline = false,
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
