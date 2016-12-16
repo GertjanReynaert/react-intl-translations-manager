@@ -6,7 +6,7 @@ Here are the steps required for contributing:
 
 1. Make sure your branch is up to date with the current master
 2. Install latest dependencies with
-  > npm run clean:install
+  > yarn
 
 3. Develop your feature/bug fix
 4. Create tests for as much as possible
