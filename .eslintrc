@@ -17,6 +17,7 @@
 
   "rules": {
     "arrow-parens": [2, "as-needed"],
-    "no-multiple-empty-lines": [2, {"max": 1, "maxEOF": 1}]
+    "no-multiple-empty-lines": [2, {"max": 1, "maxEOF": 1}],
+    "no-console": 0
   }
 }
