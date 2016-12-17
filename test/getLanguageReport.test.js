@@ -143,4 +143,26 @@ describe('getLanguageReport', () => {
 
     expect(actual).toEqual(expected);
   });
+
+  it('should give back a report with whitelisted messages', () => {
+    const actual = getLanguageReport({
+      test_message: 'This is a test message',
+    }, {
+      'test_message': 'This is a test message'
+    }, [
+      new RegExp('test', 'g')
+    ]);
+
+    const expected = {
+      ...getCleanReport(),
+      fileOutput: {
+        'test_message': 'This is a test message'
+      },
+      whitelistOutput: [
+        'test_message',
+      ],
+    };
+
+    expect(actual).toEqual(expected);
+  });
 });
