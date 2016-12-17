@@ -37,7 +37,7 @@
 //   ],
 // };
 
-export default (files, {printDescriptorId = false}) => {
+export default (files, {printDescriptorId = false} = {}) => {
   if (!files) throw new Error('Files are required');
 
   return files.reduce((fileAcc, { descriptors }) => {
