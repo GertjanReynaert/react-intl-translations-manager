@@ -1,15 +1,14 @@
-import getDefaultMessages from './getDefaultMessages';
-import getLanguageReport from './getLanguageReport';
-
 export default (languages, hooks) => {
   const {
     provideExtractedMessages,
     outputSingleFile,
+    getDefaultMessages,
     outputDuplicateKeys,
     beforeReporting,
     provideLangTemplate,
     provideTranslationsFile,
     provideWhitelistFile,
+    getLanguageReport,
     reportLanguage,
     afterReporting,
   } = hooks;
