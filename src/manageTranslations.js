@@ -91,7 +91,7 @@ export default ({
     },
 
     outputDuplicateKeys: duplicateIds => {
-      if (detectDuplicateIds) return;
+      if (!detectDuplicateIds) return;
 
       printers.printDuplicateIds(duplicateIds);
     },
