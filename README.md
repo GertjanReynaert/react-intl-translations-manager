@@ -36,6 +36,12 @@ now you know what messages you still need to update.
 yarn add --dev react-intl-translations-manager
 ```
 
+or 
+
+```
+npm i react-intl-translations-manager -D
+```
+
 ## Setup
 ### Basic
 
