@@ -118,7 +118,7 @@ these messages.
 - `languages` (optional, default: `[]`)
   - What languages the translation manager needs to maintain. Specifying no
   languages actually doesn't make sense, but won't break the translationManager
-  either.
+  either. (Do not include the default language, react-intl will automatically include it.)
   - example: for `['nl', 'fr']` the translation manager will maintain a
   `nl.json`, `fr.json`, `whitelist_nl.json` and a `whitelist_fr.json` file
 - `singleMessagesFile` (optional, default: `false`)
