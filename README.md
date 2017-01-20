@@ -58,7 +58,7 @@ Create a script in your package.json
 Create a file with your config you can run with the npm script
 ```js
 // translationRunner.js
-const manageTranslations = require('react-intl-translations-manager');
+const manageTranslations = require('react-intl-translations-manager').default;
 
 // es2015 import
 // import manageTranslations from 'react-intl-translations-manager';
