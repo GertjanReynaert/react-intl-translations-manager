@@ -39,7 +39,7 @@ yarn add --dev react-intl-translations-manager
 or 
 
 ```
-npm i react-intl-translations-manager -D
+npm i --save-dev react-intl-translations-manager
 ```
 
 ## Setup
@@ -118,7 +118,7 @@ these messages.
 - `languages` (optional, default: `[]`)
   - What languages the translation manager needs to maintain. Specifying no
   languages actually doesn't make sense, but won't break the translationManager
-  either. (Do not include the default language, react-intl will automatically include it.)
+  either. (Please do not include the default language, react-intl will automatically include it.)
   - example: for `['nl', 'fr']` the translation manager will maintain a
   `nl.json`, `fr.json`, `whitelist_nl.json` and a `whitelist_fr.json` file
 - `singleMessagesFile` (optional, default: `false`)
