@@ -36,6 +36,12 @@ now you know what messages you still need to update.
 yarn add --dev react-intl-translations-manager
 ```
 
+or 
+
+```
+npm i --save-dev react-intl-translations-manager
+```
+
 ## Setup
 ### Basic
 
@@ -52,7 +58,7 @@ Create a script in your package.json
 Create a file with your config you can run with the npm script
 ```js
 // translationRunner.js
-const manageTranslations = require('react-intl-translations-manager');
+const manageTranslations = require('react-intl-translations-manager').default;
 
 // es2015 import
 // import manageTranslations from 'react-intl-translations-manager';
@@ -112,7 +118,7 @@ these messages.
 - `languages` (optional, default: `[]`)
   - What languages the translation manager needs to maintain. Specifying no
   languages actually doesn't make sense, but won't break the translationManager
-  either.
+  either. (Please do not include the default language, react-intl will automatically include it.)
   - example: for `['nl', 'fr']` the translation manager will maintain a
   `nl.json`, `fr.json`, `whitelist_nl.json` and a `whitelist_fr.json` file
 - `singleMessagesFile` (optional, default: `false`)
