@@ -43,14 +43,16 @@ export default (defaultMessages, languageMessages = {}, languageWhitelist = []) 
       result.fileOutput[key] = oldMessage;
 
       if (oldMessage === defaultMessage) {
-        if (languageWhitelist.indexOf(key) === -1) {
-          result.untranslated.push({
-            key,
-            message: defaultMessage,
-          });
-        } else {
-          result.whitelistOutput.push(key);
+        for (const entry of languageWhitelist) {
+          if (entry instanceof RegExp ? entry.test(key) : key === entry) {
+            result.whitelistOutput.push(key);
+            return;
+          }
         }
+        result.untranslated.push({
+          key,
+          message: defaultMessage,
+        });
       }
     } else {
       result.fileOutput[key] = defaultMessage;

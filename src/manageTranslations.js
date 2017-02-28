@@ -125,7 +125,13 @@ export default ({
     provideWhitelistFile: lang => {
       const filePath = Path.join(whitelistsDirectory, `whitelist_${lang}.json`);
       const jsonFile = readFile(filePath);
-      return jsonFile ? JSON.parse(jsonFile) : undefined;
+      const whitelist =  jsonFile ? JSON.parse(jsonFile) : undefined;
+      return whitelist.map((entry) => {
+        if (typeof entry !== 'string' && entry.length) {
+          return new RegExp(entry[0], entry[1] || '');
+        }
+        return entry;
+      });
     },
 
     reportLanguage: langResults => {
