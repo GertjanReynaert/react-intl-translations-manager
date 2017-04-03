@@ -27,8 +27,8 @@ export default (languages, hooks) => {
   languages.forEach(lang => {
     const langResults = provideLangTemplate(lang);
 
-    const file = provideTranslationsFile(lang);
-    const whitelistFile = provideWhitelistFile(lang);
+    const file = provideTranslationsFile(langResults);
+    const whitelistFile = provideWhitelistFile(langResults);
 
     if (!file) langResults.noTranslationFile = true;
     if (!whitelistFile) langResults.noWhitelistFile = true;

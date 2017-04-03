@@ -116,15 +116,13 @@ export default ({
       };
     },
 
-    provideTranslationsFile: lang => {
-      const filePath = Path.join(translationsDirectory, `${lang}.json`);
-      const jsonFile = readFile(filePath);
+    provideTranslationsFile: langResults => {
+      const jsonFile = readFile(langResults.languageFilepath);
       return jsonFile ? JSON.parse(jsonFile) : undefined;
     },
 
-    provideWhitelistFile: lang => {
-      const filePath = Path.join(whitelistsDirectory, `whitelist_${lang}.json`);
-      const jsonFile = readFile(filePath);
+    provideWhitelistFile: langResults => {
+      const jsonFile = readFile(langResults.whitelistFilepath);
       return jsonFile ? JSON.parse(jsonFile) : undefined;
     },
 
