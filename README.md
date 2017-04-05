@@ -272,7 +272,7 @@ The following keys are restricted and will be overridden by the core: `report`, 
 
 #### provideTranslationsFile
 ```js
-const translationsFile = provideTranslationsFile(lang);
+const translationsFile = provideTranslationsFile(languageResults);
 ```
 
 Here you should return the translations for the specified language. This must be an object with the message id and message in a key value format.
@@ -284,7 +284,7 @@ const translationsFile = {
 
 #### provideWhitelistFile
 ```js
-const whitelistFile = provideWhitelistFile(lang);
+const whitelistFile = provideWhitelistFile(languageResults);
 ```
 
 Here you should return the whitelisted messsage ids for the specified language. This must be an array of strings.
