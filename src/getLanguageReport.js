@@ -27,10 +27,14 @@ export const getCleanReport = () => ({
   untranslated: [],
   deleted: [],
   fileOutput: {},
-  whitelistOutput: [],
+  whitelistOutput: []
 });
 
-export default (defaultMessages, languageMessages = {}, languageWhitelist = []) => {
+export default (
+  defaultMessages,
+  languageMessages = {},
+  languageWhitelist = []
+) => {
   const result = getCleanReport();
 
   const defaultMessageKeys = Object.keys(defaultMessages);
@@ -46,7 +50,7 @@ export default (defaultMessages, languageMessages = {}, languageWhitelist = []) 
         if (languageWhitelist.indexOf(key) === -1) {
           result.untranslated.push({
             key,
-            message: defaultMessage,
+            message: defaultMessage
           });
         } else {
           result.whitelistOutput.push(key);
@@ -57,7 +61,7 @@ export default (defaultMessages, languageMessages = {}, languageWhitelist = []) 
 
       result.added.push({
         key,
-        message: defaultMessage,
+        message: defaultMessage
       });
     }
   });
@@ -65,11 +69,11 @@ export default (defaultMessages, languageMessages = {}, languageWhitelist = []) 
   // if the key is still in the language file but no longer in the
   // defaultMessages file, then the key was deleted.
   result.deleted = Object.keys(languageMessages)
-  .filter(key => defaultMessageKeys.indexOf(key) === -1)
-  .map(key => ({
-    key,
-    message: languageMessages[key],
-  }));
+    .filter(key => defaultMessageKeys.indexOf(key) === -1)
+    .map(key => ({
+      key,
+      message: languageMessages[key]
+    }));
 
   return result;
 };
