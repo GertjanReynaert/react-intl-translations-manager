@@ -1,4 +1,6 @@
 # React-intl-translations-manager
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/GertjanReynaert/react-intl-translations-manager.svg)](https://greenkeeper.io/)
 [![travis-ci][travis-image]][travis-url]
 [![Codecov][codecov-image]][codecov-url]
 [![Commitizen friendly][comitizen-image]][comitizen-url]
