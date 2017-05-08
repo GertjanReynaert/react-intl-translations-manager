@@ -14,7 +14,7 @@ import core from './core';
 
 const defaultJSONOptions = {
   space: 2,
-  trailingNewline: false,
+  trailingNewline: false
 };
 
 export default ({
@@ -27,7 +27,7 @@ export default ({
   sortKeys = true,
   jsonOptions = {},
   overridePrinters = {},
-  overrideCoreMethods = {},
+  overrideCoreMethods = {}
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
@@ -59,22 +59,24 @@ export default ({
     },
 
     printNoLanguageWhitelistFile: langResults => {
-      subheader(```
+      subheader(
+        ```
         No existing ${langResults} file found.
         A new one is created.
-      ```);
-    },
+      ```
+      );
+    }
   };
 
   const printers = {
     ...defaultPrinters,
-    ...overridePrinters,
+    ...overridePrinters
   };
 
   const stringifyOpts = {
     ...defaultJSONOptions,
     ...jsonOptions,
-    sortKeys,
+    sortKeys
   };
 
   const defaultCoreMethods = {
@@ -85,7 +87,7 @@ export default ({
         createSingleMessagesFile({
           messages: combinedFiles,
           directory: translationsDirectory,
-          sortKeys,
+          sortKeys
         });
       }
     },
@@ -103,16 +105,22 @@ export default ({
 
     provideLangTemplate: lang => {
       const languageFilename = `${lang}.json`;
-      const languageFilepath = Path.join(translationsDirectory, languageFilename);
+      const languageFilepath = Path.join(
+        translationsDirectory,
+        languageFilename
+      );
       const whitelistFilename = `whitelist_${lang}.json`;
-      const whitelistFilepath = Path.join(whitelistsDirectory, whitelistFilename);
+      const whitelistFilepath = Path.join(
+        whitelistsDirectory,
+        whitelistFilename
+      );
 
       return {
         lang,
         languageFilename,
         languageFilepath,
         whitelistFilename,
-        whitelistFilepath,
+        whitelistFilepath
       };
     },
 
@@ -127,35 +135,44 @@ export default ({
     },
 
     reportLanguage: langResults => {
-      if (!langResults.report.noTranslationFile && !langResults.report.noWhitelistFile) {
+      if (
+        !langResults.report.noTranslationFile &&
+        !langResults.report.noWhitelistFile
+      ) {
         printers.printLanguageReport(langResults);
 
         writeFileSync(
           langResults.languageFilepath,
-          stringify(langResults.report.fileOutput, stringifyOpts),
+          stringify(langResults.report.fileOutput, stringifyOpts)
         );
         writeFileSync(
           langResults.whitelistFilepath,
-          stringify(langResults.report.whitelistOutput, stringifyOpts),
+          stringify(langResults.report.whitelistOutput, stringifyOpts)
         );
       } else {
         if (langResults.report.noTranslationFile) {
           printers.printNoLanguageFile(langResults);
-          writeFileSync(langResults, stringify(langResults.report.fileOutput, stringifyOpts));
+          writeFileSync(
+            langResults,
+            stringify(langResults.report.fileOutput, stringifyOpts)
+          );
         }
 
         if (langResults.report.noWhitelistFile) {
           printers.printNoLanguageWhitelistFile(langResults);
-          writeFileSync(langResults.whitelistFilepath, stringify([], stringifyOpts));
+          writeFileSync(
+            langResults.whitelistFilepath,
+            stringify([], stringifyOpts)
+          );
         }
       }
     },
 
-    afterReporting: () => {},
+    afterReporting: () => {}
   };
 
   core(languages, {
     ...defaultCoreMethods,
-    ...overrideCoreMethods,
+    ...overrideCoreMethods
   });
 };

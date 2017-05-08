@@ -8,7 +8,7 @@ export default ({
   directory,
   fileName = 'defaultMessages.json',
   sortKeys = true,
-  jsonSpaceIndentation = 2,
+  jsonSpaceIndentation = 2
 }) => {
   if (!messages) {
     throw new Error('Messages are required');
@@ -23,6 +23,6 @@ export default ({
   mkdirpSync(directory);
   writeFileSync(
     DIR,
-    stringify(messages, { space: jsonSpaceIndentation, sortKeys }),
+    stringify(messages, { space: jsonSpaceIndentation, sortKeys })
   );
 };

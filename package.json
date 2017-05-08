@@ -11,7 +11,9 @@
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "eslint": "eslint --fix ./src ./test"
+    "eslint": "eslint ./src ./test",
+    "format": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
+    "format:staged": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -51,10 +53,11 @@
     "cross-env": "^4.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.2.2",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-react": "^6.0.0",
+    "eslint-config-prettier": "^2.0.0",
     "jest": "^20.0.0",
+    "lint-staged": "^3.4.1",
+    "precommit": "^1.2.2",
+    "prettier": "^1.3.1",
     "rimraf": "^2.5.4",
     "semantic-release": "^6.3.2"
   },
@@ -67,10 +70,11 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "greenkeeper": {
-    "ignore": [
-      "eslint-config-airbnb",
-      "eslint-plugin-react"
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --single-quote",
+      "git add"
     ]
-  }
+  },
+  "pre-commit": "format:staged"
 }

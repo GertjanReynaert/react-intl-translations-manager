@@ -40,18 +40,23 @@
 export default files => {
   if (!files) throw new Error('Files are required');
 
-  return files.reduce((fileAcc, { descriptors }) => {
-    const duplicateIds = fileAcc.duplicateIds;
-    return {
-      messages: descriptors.reduce((descAcc, { id, defaultMessage }) => {
-        if (descAcc[id] !== undefined) { duplicateIds.push(id); }
+  return files.reduce(
+    (fileAcc, { descriptors }) => {
+      const duplicateIds = fileAcc.duplicateIds;
+      return {
+        messages: descriptors.reduce((descAcc, { id, defaultMessage }) => {
+          if (descAcc[id] !== undefined) {
+            duplicateIds.push(id);
+          }
 
-        return { ...descAcc, [id]: defaultMessage };
-      }, fileAcc.messages),
-      duplicateIds,
-    };
-  }, {
-    messages: {},
-    duplicateIds: [],
-  });
+          return { ...descAcc, [id]: defaultMessage };
+        }, fileAcc.messages),
+        duplicateIds
+      };
+    },
+    {
+      messages: {},
+      duplicateIds: []
+    }
+  );
 };

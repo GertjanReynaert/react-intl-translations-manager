@@ -13,22 +13,22 @@ describe('getDefaultMessages', () => {
         descriptors: [
           {
             id: 'button_text',
-            defaultMessage: 'Submit',
+            defaultMessage: 'Submit'
           },
           {
             id: 'button_title',
-            defaultMessage: 'Click this button',
-          },
-        ],
-      },
+            defaultMessage: 'Click this button'
+          }
+        ]
+      }
     ]);
 
     const expected = {
       duplicateIds: [],
       messages: {
         button_text: 'Submit',
-        button_title: 'Click this button',
-      },
+        button_title: 'Click this button'
+      }
     };
 
     expect(result).toEqual(expected);
@@ -41,38 +41,35 @@ describe('getDefaultMessages', () => {
         descriptors: [
           {
             id: 'button_text',
-            defaultMessage: 'Submit',
+            defaultMessage: 'Submit'
           },
           {
             id: 'button_title',
-            defaultMessage: 'Click this button',
-          },
-        ],
+            defaultMessage: 'Click this button'
+          }
+        ]
       },
       {
         path: 'src/components/AnotherButton.json',
         descriptors: [
           {
             id: 'button_text',
-            defaultMessage: 'Cancel',
+            defaultMessage: 'Cancel'
           },
           {
             id: 'button_title',
-            defaultMessage: 'Click this button to cancel',
-          },
-        ],
-      },
+            defaultMessage: 'Click this button to cancel'
+          }
+        ]
+      }
     ]);
 
     const expected = {
-      duplicateIds: [
-        'button_text',
-        'button_title',
-      ],
+      duplicateIds: ['button_text', 'button_title'],
       messages: {
         button_text: 'Cancel',
-        button_title: 'Click this button to cancel',
-      },
+        button_title: 'Click this button to cancel'
+      }
     };
 
     expect(result).toEqual(expected);
