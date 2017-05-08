@@ -37,7 +37,7 @@
 //   ],
 // };
 
-export default files => {
+export default (files, {printDescriptorId = false} = {}) => {
   if (!files) throw new Error('Files are required');
 
   return files.reduce((fileAcc, { descriptors }) => {
@@ -46,7 +46,7 @@ export default files => {
       messages: descriptors.reduce((descAcc, { id, defaultMessage }) => {
         if (descAcc[id] !== undefined) { duplicateIds.push(id); }
 
-        return { ...descAcc, [id]: defaultMessage };
+        return { ...descAcc, [id]: printDescriptorId ? id : defaultMessage };
       }, fileAcc.messages),
       duplicateIds,
     };

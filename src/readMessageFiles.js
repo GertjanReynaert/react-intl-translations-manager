@@ -1,6 +1,7 @@
-import { readFileSync } from 'fs';
 import { sync as globSync } from 'glob';
 import Path from 'path';
+
+import readFile from './readFile';
 
 export default messagesDirectory => {
   if (
@@ -17,7 +18,7 @@ export default messagesDirectory => {
   return globSync(EXTRACTED_MESSAGES)
   .map(filename => ({
     path: filename.substring(EXTRACTED_MESSAGES_DIR.length),
-    descriptors: JSON.parse(readFileSync(filename, 'utf8')),
+    descriptors: JSON.parse(readFile(filename)),
   }))
   .filter(file => file.descriptors.length > 0);
 };
