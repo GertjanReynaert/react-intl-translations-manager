@@ -1,9 +1,9 @@
-import translationManager from '../dist/index';
+import manageTranslations from '../dist/index';
 
-translationManager({
+manageTranslations({
   messagesDirectory: './src/locales/extractedMessages',
   translationsDirectory: './src/locales/lang/',
   whitelistsDirectory: './src/locales/whitelists/',
   languages: ['nl'],
-  singleMessagesFile: true,
+  singleMessagesFile: true
 });
