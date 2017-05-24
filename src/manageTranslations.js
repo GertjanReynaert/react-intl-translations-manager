@@ -27,7 +27,8 @@ export default ({
   sortKeys = true,
   jsonOptions = {},
   overridePrinters = {},
-  overrideCoreMethods = {}
+  overrideCoreMethods = {},
+  exitOnIssue = false
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
@@ -40,6 +41,7 @@ export default ({
         duplicateIds.forEach(id => {
           console.log('  ', `Duplicate message id: ${red(id)}`);
         });
+        exitOnIssue ? process.exitCode = 1 : null;
       } else {
         console.log(green('  No duplicate ids found, great!'));
       }
@@ -48,7 +50,7 @@ export default ({
 
     printLanguageReport: langResults => {
       header(`Maintaining ${yellow(langResults.languageFilename)}:`);
-      printResults({ ...langResults.report, sortKeys });
+      printResults({ ...langResults.report, sortKeys, exitOnIssue });
     },
 
     printNoLanguageFile: langResults => {

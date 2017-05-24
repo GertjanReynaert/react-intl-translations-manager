@@ -3,7 +3,7 @@ import { green, yellow, red, cyan } from 'chalk';
 import { newLine, subheader } from './printer';
 import compareByKey from './compareByKey';
 
-export default ({ deleted, untranslated, added, sortKeys = true }) => {
+export default ({ deleted, untranslated, added, sortKeys = true, exitOnIssue }) => {
   if (!(deleted.length || added.length || untranslated.length)) {
     console.log(green('  Perfectly maintained, no remarks!'));
     newLine();
@@ -23,6 +23,7 @@ export default ({ deleted, untranslated, added, sortKeys = true }) => {
       items.forEach(({ key, message }) =>
         console.log(`  ${yellow(key)}: ${cyan(message)}`)
       );
+      exitOnIssue ? process.exitCode = 1 : null;
       newLine();
     }
 
