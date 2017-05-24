@@ -174,6 +174,12 @@ these messages.
     afterReporting: () => {},
   }
   ```
+- `exitOnIssue` (optional, default: `true`)
+  - Enables translationManager to exit with a failing exit code (`1`) 
+  on duplicate ID's or untranslated strings.
+  - If you'd like to integrate the 
+  translationManager into your CI pipeline, this flag can help prevent builds 
+  going to production when translations are not available or duplicated.
 
 #### Fully configured
 
@@ -211,6 +217,7 @@ manageTranslations({
     reportLanguage: () => {},
     afterReporting: () => {},
   },
+  exitOnIssue: true,
 });
 ```
 
