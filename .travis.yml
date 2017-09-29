@@ -6,17 +6,18 @@ cache:
 notifications:
   email: false
 node_js:
-  - '4'
+  - '8'
 before_install:
-  - npm i -g npm@^2.0.0
+  - npm install --global npm
+  - npm install --global yarn
 before_script:
-  - npm prune
+  - yarn install
 script:
-  - npm run coverage
+  - yarn run coverage
 after_success:
-  - npm run report:coverage
-  - npm run build
-  - npm run semantic-release
+  - yarn run report:coverage
+  - yarn run build
+  - yarn run semantic-release
 branches:
   only:
     - master
