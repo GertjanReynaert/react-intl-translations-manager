@@ -55,7 +55,7 @@
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.7.2",
     "eslint-config-prettier": "^2.6.0",
-    "jest": "^21.2.1",
+    "jest": "^22.0.0",
     "lint-staged": "^4.2.3",
     "precommit": "^1.2.2",
     "prettier": "^1.7.2",
