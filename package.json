@@ -10,7 +10,7 @@
     "report:coverage": "cat ./coverage/coverage-final.json | ./node_modules/codecov.io/bin/codecov.io.js",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release",
     "eslint": "eslint ./src ./test",
     "format": "npm run format:js && npm run format:md",
     "format:js": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
@@ -62,7 +62,7 @@
     "precommit": "^1.2.2",
     "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
-    "semantic-release": "^8.2.3"
+    "semantic-release": "9.1.1"
   },
   "jest": {
     "coverageDirectory": "coverage",
