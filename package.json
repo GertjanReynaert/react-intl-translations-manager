@@ -12,7 +12,9 @@
     "build": "babel src --out-dir dist",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "eslint": "eslint ./src ./test",
-    "format": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
+    "format": "npm run format:js && npm run format:md",
+    "format:js": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
+    "format:md": "prettier --write --single-quote --parser markdown '*.md'",
     "format:staged": "lint-staged"
   },
   "repository": {
@@ -38,7 +40,7 @@
   },
   "homepage": "https://github.com/GertjanReynaert/react-intl-translations-manager#readme",
   "dependencies": {
-    "chalk": "^2.1.0",
+    "chalk": "^2.3.2",
     "glob": "^7.1.2",
     "json-stable-stringify": "^1.0.1",
     "mkdirp": "^0.5.1"
@@ -46,21 +48,21 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
     "codecov.io": "^0.1.6",
-    "cross-env": "^5.0.5",
-    "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^4.7.2",
-    "eslint-config-prettier": "^2.6.0",
-    "jest": "^21.2.1",
-    "lint-staged": "^4.2.3",
+    "cross-env": "^5.1.4",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.0",
     "precommit": "^1.2.2",
-    "prettier": "^1.7.2",
+    "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
-    "semantic-release": "^8.0.3"
+    "semantic-release": "^8.2.3"
   },
   "jest": {
     "coverageDirectory": "coverage",
