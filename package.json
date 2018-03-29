@@ -1,23 +1,29 @@
 {
   "name": "react-intl-translations-manager",
-  "description": "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
+  "description":
+    "Manage all translations based on the extracted messages of the babel-plugin-react-intl",
   "main": "./dist/index.js",
   "scripts": {
     "clean:install": "rimraf node_modules && npm cache clean && npm install",
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "npm test -- --watch",
     "coverage": "cross-env npm test -- --coverage --maxWorkers=4",
-    "report:coverage": "cat ./coverage/coverage-final.json | ./node_modules/codecov.io/bin/codecov.io.js",
+    "report:coverage":
+      "cat ./coverage/coverage-final.json | ./node_modules/codecov.io/bin/codecov.io.js",
     "prebuild": "rimraf dist",
     "build": "babel src --out-dir dist",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post",
     "eslint": "eslint ./src ./test",
-    "format": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
+    "format": "npm run format:js && npm run format:md",
+    "format:js": "prettier --write --single-quote 'src/**/*.js' 'test/**/*.js'",
+    "format:md": "prettier --write --single-quote --parser markdown '*.md'",
     "format:staged": "lint-staged"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GertjanReynaert/react-intl-translations-manager.git"
+    "url":
+      "https://github.com/GertjanReynaert/react-intl-translations-manager.git"
   },
   "keywords": [
     "react",
@@ -29,14 +35,14 @@
     "i18n"
   ],
   "author": "Gertjan Reynaert <gertjan.reynaert@gmail.com>",
-  "contributors": [
-    "Bart van Andel <bavanandel@gmail.com>"
-  ],
+  "contributors": ["Bart van Andel <bavanandel@gmail.com>"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GertjanReynaert/react-intl-translations-manager/issues"
+    "url":
+      "https://github.com/GertjanReynaert/react-intl-translations-manager/issues"
   },
-  "homepage": "https://github.com/GertjanReynaert/react-intl-translations-manager#readme",
+  "homepage":
+    "https://github.com/GertjanReynaert/react-intl-translations-manager#readme",
   "dependencies": {
     "chalk": "^2.1.0",
     "glob": "^7.1.2",
@@ -46,19 +52,19 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.2.2",
     "babel-jest": "^21.2.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "codecov.io": "^0.1.6",
     "cross-env": "^5.0.5",
     "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^4.7.2",
-    "eslint-config-prettier": "^2.6.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
     "jest": "^21.2.1",
-    "lint-staged": "^4.2.3",
+    "lint-staged": "^7.0.0",
     "precommit": "^1.2.2",
-    "prettier": "^1.7.2",
+    "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
     "semantic-release": "^8.0.3"
   },
@@ -72,10 +78,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write --single-quote",
-      "git add"
-    ]
+    "*.js": ["prettier --write --single-quote", "git add"]
   },
   "pre-commit": "format:staged"
 }
