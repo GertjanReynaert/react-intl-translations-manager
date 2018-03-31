@@ -22,6 +22,7 @@ export default ({
   translationsDirectory,
   whitelistsDirectory = translationsDirectory,
   languages = [],
+  defaultLanguage = '',
   singleMessagesFile = false,
   detectDuplicateIds = true,
   sortKeys = true,
@@ -135,6 +136,9 @@ export default ({
     },
 
     reportLanguage: langResults => {
+      if (langResults.lang === defaultLanguage) {
+        langResults.report.untranslated = []
+      }
       if (
         !langResults.report.noTranslationFile &&
         !langResults.report.noWhitelistFile
