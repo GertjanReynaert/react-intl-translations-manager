@@ -33,7 +33,8 @@ export const getCleanReport = () => ({
 export default (
   defaultMessages,
   languageMessages = {},
-  languageWhitelist = []
+  languageWhitelist = [],
+  coreOpt = {},
 ) => {
   const result = getCleanReport();
 
@@ -43,7 +44,7 @@ export default (
     const oldMessage = languageMessages[key];
     const defaultMessage = defaultMessages[key];
 
-    if (oldMessage) {
+    if ((coreOpt.enableEmptyValue && oldMessage === '') || oldMessage) {
       result.fileOutput[key] = oldMessage;
 
       if (oldMessage === defaultMessage) {

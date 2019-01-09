@@ -57,6 +57,31 @@ describe('getLanguageReport', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should give back a report with fileout pair: test_message and empty string', () => {
+    const actual = getLanguageReport(
+      {
+        test_message: 'This is a test message'
+      },
+      {
+        test_message: '',
+      },
+      [],
+      {
+        enableEmptyValue: true,
+      }
+    );
+
+    const expected = {
+      ...getCleanReport(),
+      added: [],
+      fileOutput: {
+        test_message: ''
+      }
+    };
+
+    expect(actual).toEqual(expected);
+  });
+
   it('should give back a report with untranslated messages', () => {
     const actual = getLanguageReport(
       {

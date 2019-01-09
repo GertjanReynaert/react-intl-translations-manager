@@ -1,7 +1,7 @@
 import getDefaultMessages from './getDefaultMessages';
 import getLanguageReport from './getLanguageReport';
 
-export default (languages, hooks) => {
+export default (languages, hooks, coreOpt) => {
   const {
     provideExtractedMessages,
     outputSingleFile,
@@ -11,7 +11,7 @@ export default (languages, hooks) => {
     provideTranslationsFile,
     provideWhitelistFile,
     reportLanguage,
-    afterReporting
+    afterReporting,
   } = hooks;
 
   const extractedMessages = provideExtractedMessages();
@@ -40,7 +40,8 @@ export default (languages, hooks) => {
     langResults.report = getLanguageReport(
       defaultMessages.messages,
       file,
-      whitelistFile
+      whitelistFile,
+      coreOpt,
     );
 
     if (typeof reportLanguage === 'function') reportLanguage(langResults);
