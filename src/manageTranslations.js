@@ -27,7 +27,8 @@ export default ({
   sortKeys = true,
   jsonOptions = {},
   overridePrinters = {},
-  overrideCoreMethods = {}
+  overrideCoreMethods = {},
+  coreOpt = {},
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
@@ -173,6 +174,7 @@ export default ({
 
   core(languages, {
     ...defaultCoreMethods,
-    ...overrideCoreMethods
+    ...overrideCoreMethods,
+    coreOpt,
   });
 };
