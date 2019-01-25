@@ -22,6 +22,7 @@ export default ({
   translationsDirectory,
   whitelistsDirectory = translationsDirectory,
   languages = [],
+  defaultLanguage = '',
   singleMessagesFile = false,
   detectDuplicateIds = true,
   sortKeys = true,
@@ -173,6 +174,7 @@ export default ({
 
   core(languages, {
     ...defaultCoreMethods,
-    ...overrideCoreMethods
+    ...overrideCoreMethods,
+    defaultLanguage
   });
 };
