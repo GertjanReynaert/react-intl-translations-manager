@@ -27,13 +27,16 @@ export const getCleanReport = () => ({
   untranslated: [],
   deleted: [],
   fileOutput: {},
-  whitelistOutput: []
+  whitelistOutput: [],
+  changedDefaultMessages: []
 });
 
 export default (
   defaultMessages,
   languageMessages = {},
-  languageWhitelist = []
+  languageWhitelist = [],
+  changedDefaultMessages = [],
+  isDefaultLang = false
 ) => {
   const result = getCleanReport();
 
@@ -43,7 +46,7 @@ export default (
     const oldMessage = languageMessages[key];
     const defaultMessage = defaultMessages[key];
 
-    if (oldMessage) {
+    if (oldMessage && changedDefaultMessages.indexOf(key) === -1) {
       result.fileOutput[key] = oldMessage;
 
       if (oldMessage === defaultMessage) {
@@ -74,6 +77,15 @@ export default (
       key,
       message: languageMessages[key]
     }));
+
+  if (isDefaultLang) {
+    result.changedDefaultMessages = Object.keys(languageMessages)
+      .filter(key => defaultMessages[key] !== languageMessages[key])
+      .map(key => {
+        result.fileOutput[key] = defaultMessages[key];
+        return key;
+      });
+    }
 
   return result;
 };
