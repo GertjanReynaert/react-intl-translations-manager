@@ -13,20 +13,20 @@ Here are the steps required for contributing:
 4.  Create tests for as much as possible
 5.  Make sure eslint errors are fixed, if eslint errors don't show up in your editor you can always check them with
 
-    > npm run eslint
+    > yarn run eslint
 
 6.  Check if everything works well by using the example application
 7.  Create a build for the translation manager
-    > npm run build
+    > yarn run build
 8.  Create a build for the example application
     > cd example
 
 
-    > npm run build
+    > yarn run build
 
 3.  Run the translation manager
 
-    > npm run manage:translations
+    > yarn run manage:translations
 
 4.  Commit your changes according to the conventional changelog commit convention we use
 5.  Create a pull request
