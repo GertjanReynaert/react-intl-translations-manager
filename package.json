@@ -55,7 +55,7 @@
     "codecov.io": "^0.1.6",
     "cross-env": "^5.1.4",
     "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.14.1",
     "eslint-config-prettier": "^2.9.0",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.0",
