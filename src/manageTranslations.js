@@ -27,7 +27,9 @@ export default ({
   sortKeys = true,
   jsonOptions = {},
   overridePrinters = {},
-  overrideCoreMethods = {}
+  overrideCoreMethods = {},
+  shouldThrowErrorOn = {},
+
 }) => {
   if (!messagesDirectory || !translationsDirectory) {
     throw new Error('messagesDirectory and translationsDirectory are required');
@@ -92,10 +94,14 @@ export default ({
       }
     },
 
-    outputDuplicateKeys: duplicateIds => {
+    onDuplicateKeys: duplicateIds => {
       if (!detectDuplicateIds) return;
 
       printers.printDuplicateIds(duplicateIds);
+
+      if (shouldThrowErrorOn.duplicateKeys) {
+        throw 'there are duplicate keys';
+      }
     },
 
     beforeReporting: () => {
@@ -149,6 +155,13 @@ export default ({
           langResults.whitelistFilepath,
           stringify(langResults.report.whitelistOutput, stringifyOpts)
         );
+
+        if (
+          shouldThrowErrorOn.untranslated &&
+          langResults.report.untranslated.length
+        ) {
+          throw `untranslated keys in ${langResults.lang}`;
+        }
       } else {
         if (langResults.report.noTranslationFile) {
           printers.printNoLanguageFile(langResults);
@@ -168,7 +181,12 @@ export default ({
       }
     },
 
-    afterReporting: () => {}
+    afterReporting: errors => {
+      if (errors.length) {
+        console.log(red('Errors: ' + errors.join(', ')));
+        process.exitCode = 1;
+      }
+    }
   };
 
   core(languages, {
