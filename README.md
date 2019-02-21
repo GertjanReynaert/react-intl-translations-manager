@@ -188,6 +188,15 @@ these messages.
     afterReporting: () => {}
   };
   ```
+* `shouldThrowErrorOn` (optional, default: {})
+  - Here you can specify if you want to exit with an error
+  - Possible keys:
+  ```js
+  const shouldThrowErrorOn = {
+    untranslated: true,
+    duplicateKeys: true
+  };
+  ```
 
 #### Fully configured
 

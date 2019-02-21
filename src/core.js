@@ -5,7 +5,7 @@ export default (languages, hooks) => {
   const {
     provideExtractedMessages,
     outputSingleFile,
-    outputDuplicateKeys,
+    onDuplicateKeys,
     beforeReporting,
     provideLangTemplate,
     provideTranslationsFile,
@@ -15,6 +15,7 @@ export default (languages, hooks) => {
   } = hooks;
 
   const extractedMessages = provideExtractedMessages();
+  const errors = [];
 
   if (typeof outputSingleFile === 'function') {
     outputSingleFile(extractedMessages);
@@ -22,8 +23,12 @@ export default (languages, hooks) => {
 
   const defaultMessages = getDefaultMessages(extractedMessages);
 
-  if (typeof outputDuplicateKeys === 'function') {
-    outputDuplicateKeys(defaultMessages.duplicateIds);
+  if (typeof onDuplicateKeys === 'function') {
+    try {
+      onDuplicateKeys(defaultMessages.duplicateIds);
+    } catch (e) {
+      errors.push(e);
+    }
   }
 
   if (typeof beforeReporting === 'function') beforeReporting();
@@ -43,8 +48,14 @@ export default (languages, hooks) => {
       whitelistFile
     );
 
-    if (typeof reportLanguage === 'function') reportLanguage(langResults);
+    if (typeof reportLanguage === 'function') {
+      try {
+        reportLanguage(langResults);
+      } catch (e) {
+        errors.push(e);
+      }
+    }
   });
 
-  if (typeof afterReporting === 'function') afterReporting();
+  if (typeof afterReporting === 'function') afterReporting(errors);
 };
