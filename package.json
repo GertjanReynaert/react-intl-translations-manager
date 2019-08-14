@@ -61,7 +61,7 @@
     "lint-staged": "^7.0.0",
     "precommit": "^1.2.2",
     "prettier": "^1.11.1",
-    "rimraf": "^2.6.2",
+    "rimraf": "^3.0.0",
     "semantic-release": "9.1.1"
   },
   "jest": {
