@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/GertjanReynaert/react-intl-translations-manager#readme",
   "dependencies": {
-    "chalk": "^2.3.2",
+    "chalk": "^4.0.0",
     "glob": "^7.1.2",
     "json-stable-stringify": "^1.0.1",
     "mkdirp": "^0.5.1"
