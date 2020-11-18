@@ -62,7 +62,7 @@
     "precommit": "^1.2.2",
     "prettier": "^1.11.1",
     "rimraf": "^2.6.2",
-    "semantic-release": "9.1.1"
+    "semantic-release": "17.2.3"
   },
   "jest": {
     "coverageDirectory": "coverage",
